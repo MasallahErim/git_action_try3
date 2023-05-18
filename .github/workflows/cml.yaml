@@ -18,7 +18,8 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
 
         run: | # docker imajı içerisinde çalışacak komutlar
-          pip3 install -r requirements.txt
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
           python src/models/model1/train_data.py
           cat metrics.txt >> report.md
           cml-publish ROC.png --md >> report.md
