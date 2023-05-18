@@ -20,7 +20,7 @@ from sklearn.metrics import RocCurveDisplay
 
 
 path = os.getcwd()
-df = pd.read_csv("./data/processedData.csv")
+df = pd.read_csv("src/models/model1/data/processedData.csv")
 del df["Unnamed: 0"]
 
 x = df.drop(["Exited"],axis=1)
