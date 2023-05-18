@@ -22,5 +22,5 @@ jobs:
           pip install -r requirements.txt
           python src/models/model1/train_data.py
           cat metrics.txt >> report.md
-          cml-publish ROC.png --md >> report.md
-          cml-send-comment report.md
+          cml publish ./ROC.png --md >> report.md
+          cml comment create report.md
