@@ -64,7 +64,7 @@ plt.savefig('ROC.png', dpi=120)
 
 
 # - - - - - - - GENERATE METRICS FILE
-with open("metrics.json", 'w') as outfile:
+with open("metrics.txt", 'w') as outfile:
         json.dump(
         	{ "score": scoredummy, "mse": msedummy,}, 
         	  outfile
