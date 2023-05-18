@@ -1,1 +1,25 @@
 
+name: your-workflow-name
+on: [push]
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # optionally use a convenient Ubuntu LTS + DVC + CML image
+    container: ghcr.io/iterative/cml:0-dvc2-base1
+
+    steps:
+      - uses: actions/checkout@v3
+      # - uses: actions/setup-python@v4
+      #   with:
+      #     python-version: '3.x'
+      - uses: iterative/setup-cml@v1
+      - name: "Train-model"
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+
+        run: | # docker imajı içerisinde çalışacak komutlar
+          pip3 install -r requirements.txt
+          python src/models/model1/train_data.py
+          cat metrics.txt >> report.md
+          cml-publish ROC.png --md >> report.md
+          cml-send-comment report.md
