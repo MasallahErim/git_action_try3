@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // GitHub'dan kodu çek
+                    checkout scm
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    // Python testlerini çalıştır
+                    sh 'python -m unittest discover -s tests'
+                }
+            }
+        }
+    }
+    post {
+        success {
+            // Birim testler başarılı ise yapılacaklar
+            echo 'Birim testler başarıyla tamamlandı.'
+        }
+    }
+}
